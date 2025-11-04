@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>__TITLE__</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="crossword-nav">
+    <a href="../../archive.html">&larr; Back to Archive</a>
+    <a href="../../index.html">Home</a>
+  </nav>
+
+  <h1>TITLE</h1>
+  <h2>by Sam</h2>
+  <h3>#???</h3>
+
+  <div id="crossword-container">
+    <div id="crossword"></div>
+  </div>
+
+  <div style="margin: 16px 0;">
+    <button id="verify-btn">Verify</button>
+  </div>
+
+  <div>
+    <h2>Clues</h2>
+    <h3>Across</h3>
+    <!-- Add across clues here for puzzle __NUM__ -->
+
+    <h3>Down</h3>
+    <!-- Add down clues here for puzzle __NUM__ -->
+  </div>
+
+  <div id="reveal-container">
+    <label for="reveal-password">Enter password to reveal solved puzzle</label>
+    <input id="reveal-password" type="password">
+    <button id="reveal-button">Reveal</button>
+    <span id="reveal-message" aria-live="polite"></span>
+    <div id="solved-wrap">
+      <img id="solved-image" src="solved.png" alt="Solved crossword">
+    </div>
+  </div>
+
+  <script src="crossword.js"></script>
+</body>
+</html>
