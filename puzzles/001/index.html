@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossword #001</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav style="text-align: center; padding: 10px;">
+        <a href="../../archive.html" style="text-decoration: none; color: #666;">&larr; Archive</a>
+    </nav>
+    <h1>Crossword Puzzle</h1>
+    <h2>by Sam</h2>
+    <h3>#001</h3>
+    <div id="crossword-container">
+        <div id="crossword"></div>
+    </div>
+    <div style="margin: 16px 0;">
+        <button id="verify-btn">Verify</button>
+    </div>
+    <div>
+        <h2>Clues</h2>
+        <h3>Across</h3>
+        <p>1. Where coach seats you after a misplay 2. Zodiac for most of October 3. Villain's crib 4. Former Syrian President (FIRST)</p>
+        <p>5. First word in a children's tale 6. Intimate piece of a sleep aid device 7. City that lost two pro teams to Vegas</p>
+        <p>8. An active ingredient in Benadryl 9. Response from a professor when asked what they do for a living, maybe.</p>
+        <p>10. Sure 11. Emblems on navy vessels 12. Days before 13. A pitching statistic 14. TV's place for puppets</p>
+        <p>15. Newly-suspicious piece of punctuation 16. In Italy, a term used to mean 'league' 17. Sweetheart 18. Band, and sleep phase</p>
+        <p>19. Month of abstinence, in internet parlance 20. 2017 hurricane 21. A dom's counterpart 22. Grandpa's breakfast, maybe</p>
+        <p>23. Universal donor type 24. A form of interaction on X (acr.)</p>
+        <h3>Down</h3>
+        <p>1. 'Dumb' beverage on tap 2. Subject of many critiques via 90s rap music 4. ____ mì 6. 'Kin' in older days 13. Lady sheep</p>
+        <p>20. NBA coach Udoka 25. Scottish adjustment of the name Ian 26. Of Nice 27. ________ destruction, derived from Karl Marx</p>
+        <p>28. Generalizing suffix 29. ____ Bhabie 30. A smoker's voice 31. Confinement place for comic book villains</p>
+        <p>32. Important orgs who sway elections 33. An exercise you might choose to do in private 34. Brother, to a Crip</p>
+        <p>35. French for 'tree' 36. The option of negation (bad clue sorry) 37. Mt. where the commandments were received</p>
+        <p>38. Last name of Pulitzer winning rapper 39. The cards have been _____ 40. ____-American</p>
+        <p>41. High school extra curricular for aspiring diplomats (acr.) 42. Infinitive form of the verb relating to existence 43. Nearly ubiquitous living room appliance (abbr.)</p>
+    </div>
+    <!-- Reveal solved image (password protected) -->
+    <div id="reveal-container">
+        <label for="reveal-password">Enter correct answer (ALL CAPS) to clue 4 (ACROSS) to reveal solved puzzle</label>
+        <input id="reveal-password" type="password" aria-label="Password to reveal solved grid">
+        <button id="reveal-button">Reveal</button>
+        <span id="reveal-message" aria-live="polite"></span>
+        <div id="solved-wrap">
+            <img id="solved-image" src="solved.png" alt="Solved crossword" />
+        </div>
+    </div>
+    <script src="crossword.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossword Archive</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .puzzle-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .puzzle-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .puzzle-card h3 {
+            margin: 0 0 10px 0;
+        }
+        .puzzle-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .puzzle-date {
+            color: #666;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crossword Archive</h1>
+    <p>Browse and play past crossword puzzles</p>
+    
+    <div class="puzzle-grid">
+        <div class="puzzle-card">
+            <a href="puzzles/001/index.html">
+                <h3>Crossword #001</h3>
+                <div class="puzzle-date">November 3, 2025</div>
+                <p>by Sam</p>
+            </a>
+        </div>
+        <!-- New puzzle cards will be added here -->
+    </div>
+</body>
+</html>

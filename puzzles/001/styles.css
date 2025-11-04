@@ -1,0 +1,81 @@
+body {
+    text-align: center;
+}
+#crossword-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#crossword {
+    display: grid;
+    align-content: center;
+    grid-template-columns: repeat(13, 32px);
+    grid-template-rows: repeat(12, 32px);
+    gap: 0px;
+    position: relative;
+}
+
+.cell {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    font-size: 1.2em;
+    border: 1px solid #333;
+}
+
+.cell.black {
+    background-color: black;
+}
+
+.cell.incorrect {
+    background-color: rgba(255,0,0,0.25) !important;
+}
+
+/* overlay that displays clue numbers visually on top of the inputs */
+.overlay {
+    z-index: 3;
+    pointer-events: none;
+}
+
+.clue-number {
+    font-size: 0.6em;
+    color: rgba(0,0,0,0.75);
+    align-self: start;
+    justify-self: start;
+    padding: 2px 3px;
+    line-height: 1;
+}
+
+/* Reveal / password UI */
+#reveal-container {
+    margin: 16px auto;
+    text-align: center;
+}
+
+#reveal-container input[type="password"] {
+    margin-left: 8px;
+    padding: 4px 8px;
+}
+
+#reveal-container button {
+    margin-left: 8px;
+    padding: 5px 10px;
+}
+
+#solved-wrap {
+    margin-top: 12px;
+}
+
+#solved-image {
+    max-width: 100%;
+    height: auto;
+    display: none;
+    border: 2px solid #444;
+}
+
+#reveal-message {
+    display: inline-block;
+    margin-left: 12px;
+    color: #900;
+}
