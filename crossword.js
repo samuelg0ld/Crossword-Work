@@ -109,6 +109,34 @@ for (let r = 0; r < rows; r++) {
 // append overlay after inputs so it visually sits above them
 crosswordContainer.appendChild(overlay);
 
+// --------- Verification button logic ----------
+document.addEventListener('DOMContentLoaded', () => {
+  // ...existing code...
+
+  // Verification logic
+  const verifyBtn = document.getElementById('verify-btn');
+  if (verifyBtn) {
+    verifyBtn.addEventListener('click', () => {
+      // Get all input cells
+      const inputCells = Array.from(document.querySelectorAll('input.cell'));
+      // Remove previous incorrect highlights
+      inputCells.forEach(cell => cell.classList.remove('incorrect'));
+      let idx = 0;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const cell = inputCells[idx++];
+          if (grid[r][c] === '.') continue;
+          const userVal = (cell.value || '').toUpperCase();
+          const correctVal = grid[r][c].toUpperCase();
+          if (userVal && userVal !== correctVal) {
+            cell.classList.add('incorrect');
+          }
+        }
+      }
+    });
+  }
+});
+
 // --------- Password-protected reveal (client-side demo) ----------
 // Note: client-side password checks can be inspected/modified by users.
 // For true protection, perform password checking on a server and only
