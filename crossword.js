@@ -41,8 +41,13 @@ overlay.className = 'overlay';
 overlay.style.position = 'absolute';
 overlay.style.inset = '0';
 overlay.style.display = 'grid';
-overlay.style.gridTemplateColumns = `repeat(${cols}, 32px)`;
-overlay.style.gridTemplateRows = `repeat(${rows}, 32px)`;
+// Instead of hard-coded 32px templates, set CSS vars so the stylesheet can
+// compute responsive sizes. The CSS uses --cols and --cell-size to size the grid.
+overlay.style.setProperty('--cols', String(cols));
+overlay.style.setProperty('--rows', String(rows));
+// also set the same on the crossword container so both use the same vars
+crosswordContainer.style.setProperty('--cols', String(cols));
+crosswordContainer.style.setProperty('--rows', String(rows));
 overlay.style.pointerEvents = 'none'; // allow clicks to pass to inputs
 
 // We'll number across clues first (left-to-right, top-to-bottom) and only

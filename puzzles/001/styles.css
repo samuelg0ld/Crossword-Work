@@ -8,17 +8,24 @@ body {
 }
 
 #crossword {
+    /* Responsive sizing: JS sets --cols/--rows; CSS computes --cell-size to fit viewport */
+    --cols: 13;
+    --rows: 12;
+    --cell-size: clamp(24px, calc((100vw - 40px) / var(--cols)), 32px);
     display: grid;
     align-content: center;
-    grid-template-columns: repeat(13, 32px);
-    grid-template-rows: repeat(12, 32px);
+    grid-template-columns: repeat(var(--cols), var(--cell-size));
+    grid-auto-rows: var(--cell-size);
     gap: 0px;
     position: relative;
+    max-width: calc(var(--cell-size) * var(--cols));
 }
 
 .cell {
-    width: 32px;
-    height: 32px;
+    box-sizing: border-box;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    aspect-ratio: 1/1;
     text-align: center;
     font-size: 1.2em;
     border: 1px solid #333;
@@ -34,8 +41,13 @@ body {
 
 /* overlay that displays clue numbers visually on top of the inputs */
 .overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
     z-index: 3;
     pointer-events: none;
+    grid-template-columns: repeat(var(--cols), var(--cell-size));
+    grid-auto-rows: var(--cell-size);
 }
 
 .clue-number {
