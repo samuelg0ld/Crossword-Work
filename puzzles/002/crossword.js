@@ -48,8 +48,11 @@ overlay.className = 'overlay';
 overlay.style.position = 'absolute';
 overlay.style.inset = '0';
 overlay.style.display = 'grid';
-overlay.style.gridTemplateColumns = `repeat(${cols}, 32px)`;
-overlay.style.gridTemplateRows = `repeat(${rows}, 32px)`;
+// Use CSS custom properties so responsive CSS controls cell sizing
+overlay.style.setProperty('--cols', String(cols));
+overlay.style.setProperty('--rows', String(rows));
+crosswordContainer.style.setProperty('--cols', String(cols));
+crosswordContainer.style.setProperty('--rows', String(rows));
 overlay.style.pointerEvents = 'none';
 
 const numbers = Array.from({ length: rows }, () => Array(cols).fill(null));

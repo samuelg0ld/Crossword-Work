@@ -21,6 +21,22 @@ body {
     max-width: calc(var(--cell-size) * var(--cols));
 }
 
+/* cell styling (ensure black squares render correctly locally) */
+.cell {
+    box-sizing: border-box;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    aspect-ratio: 1/1;
+    text-align: center;
+    font-size: 1.2em;
+    border: 1px solid #333;
+}
+
+.cell.black {
+    background-color: #000 !important;
+    color: transparent;
+}
+
 .overlay {
     position: absolute;
     inset: 0;
