@@ -1,8 +1,8 @@
 /* Basic puzzle styles (copied from site) */
 body{ text-align: center; }
 #crossword-container { display: flex; justify-content: center; margin-top: 20px; }
-#crossword { display: grid; align-content: center; grid-template-columns: repeat(20, 32px); grid-template-rows: repeat(19, 32px); gap: 0px; position: relative; }
-.cell { width: 32px; height: 32px; text-align: center; font-size: 1.2em; border: 1px solid #333; }
+#crossword { display: grid; align-content: center; grid-template-columns: repeat(20, 2em); grid-template-rows: repeat(19, 2em); gap: 0px; position: relative; }
+.cell { width: 2em; height: 2em; text-align: center; font-size: 1.2em; border: 1px solid #333; }
 .cell.black { background-color: black; }
 .cell.incorrect { background-color: rgba(255,0,0,0.25) !important; }
 .overlay { z-index: 3; pointer-events: none; }

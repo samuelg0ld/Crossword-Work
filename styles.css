@@ -10,8 +10,8 @@ text-align: center;
 #crossword {
   display: grid;
   align-content: center;
-  grid-template-columns: repeat(13, 32px);
-  grid-template-rows: repeat(12, 32px);
+  grid-template-columns: repeat(13, 2em);
+  grid-template-rows: repeat(12, 2em);
   gap: 0px;
 }
 
@@ -69,8 +69,8 @@ text-align: center;
 }
 
 .cell {
-  width: 32px ;
-  height: 32px;
+  width: 2em ;
+  height: 2em;
   text-align: center;
   font-size: 1.2em;
   border: 1px solid #333;
