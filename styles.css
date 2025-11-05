@@ -37,15 +37,20 @@ text-align: center;
   /* overlay grid uses same sizing variables as #crossword; JS can set --cols on the container */
   grid-template-columns: repeat(var(--cols), var(--cell-size));
   grid-auto-rows: var(--cell-size);
+  justify-items: start;
+  align-items: start;
 }
 
 .clue-number {
-  font-size: 0.6em;
+  /* size and padding scale with the cell size so numbers remain legible and aligned on mobile */
+  font-size: calc(var(--cell-size) * 0.36);
   color: rgba(0,0,0,0.75);
   align-self: start;
   justify-self: start;
-  padding: 2px 3px;
+  padding: calc(var(--cell-size) * 0.06) calc(var(--cell-size) * 0.08);
   line-height: 1;
+  user-select: none;
+  pointer-events: none; /* keep overlay non-interactive by default */
 }
 
 /* Reveal / password UI */
