@@ -8,8 +8,8 @@
 </head>
 <body>
   <nav class="crossword-nav">
-    <a href="../../archive.html">&larr; Back to Archive</a>
-    <a href="../../index.html">Home</a>
+    <a class="archive-link" href="#">&larr; Back to Archive</a>
+    <a class="home-link" href="#">Home</a>
   </nav>
 
   <h1>TITLE</h1>
@@ -44,5 +44,19 @@
   </div>
 
   <script src="crossword.js"></script>
+  <script>
+  // Set archive/home links to work regardless of deployment base (GitHub Pages project or user site).
+  (function(){
+    const a = document.querySelector('.archive-link');
+    const h = document.querySelector('.home-link');
+    if (!a && !h) return;
+    const p = location.pathname;
+    const idx = p.indexOf('/puzzles/');
+    const root = (idx !== -1) ? p.slice(0, idx) : '';
+    const base = location.origin + (root || '');
+    if (a) a.setAttribute('href', base + '/archive.html');
+    if (h) h.setAttribute('href', base + '/index.html');
+  })();
+  </script>
 </body>
 </html>

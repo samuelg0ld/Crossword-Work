@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav style="text-align: center; padding: 10px;">
-        <a href="../../archive.html" style="text-decoration: none; color: #666;">&larr; Archive</a>
+        <a class="archive-link" href="#" style="text-decoration: none; color: #666;">&larr; Archive</a>
     </nav>
     <h1>Crossword Puzzle</h1>
     <h2>by Sam</h2>
@@ -49,5 +49,17 @@
         </div>
     </div>
     <script src="crossword.js"></script>
+        <script>
+        // Make the archive link work regardless of deployment base (GitHub Pages project or user site).
+        (function(){
+            const a = document.querySelector('.archive-link');
+            if (!a) return;
+            const p = location.pathname;
+            const idx = p.indexOf('/puzzles/');
+            const root = (idx !== -1) ? p.slice(0, idx) : '';
+            const href = location.origin + (root || '') + '/archive.html';
+            a.setAttribute('href', href);
+        })();
+        </script>
 </body>
 </html>
