@@ -1,19 +1,27 @@
+// Template crossword.js — replace the grid below with your puzzle
 const crosswordContainer = document.getElementById('crossword');
 
 const grid = [
-  ['B','E','N','C','H','.','.','.','L','I','B','R','A'],
-  ['L','A','I','R','.','.','.','B','A','S','H','A','R'],
-  ['O','N','C','E','.','C','P','A','P','M','A','S','K'],
-  ['N','.','O','A','K','L','A','N','D','.','D','P','H'],
-  ['D','.','I','T','E','A','C','H','.','.','.','Y','A'],
-  ['E','N','S','I','G','N','S','.','.','C','.','.','M'],
-  ['B','.','E','V','E','S','.','.','E','R','A','.','.'],
-  ['E','.','.','E','L','M','O','S','W','O','R','L','D'],
-  ['E','M','.','.','S','E','R','I','E','.','B','A','E'],
-  ['R','E','M','.','.','N','N','N','.','I','R','M','A'],  
-  ['.','S','U','B','.','.','O','A','T','M','E','A','L'],
-  ['.','O','N','E','G','A','T','I','V','E','.','R','T'],
-];
+  ['.','.','.','.','A','P','P','A','R','A','T','U','S','.','U','.','B','R','A','T'],
+  ['W','O','N','T','.','A','P','P','A','R','I','T','I','O','N','S','.','O','Y','.'],
+  ['O','F','F','L','I','N','E','.','V','A','L','E','D','I','C','T','I','O','N','.'],
+  ['O','F','T','.','.','O','.','D','E','B','.','.','.','.','.','I','B','S','.','N'],
+  ['D','I','S','C','I','P','L','I','N','E','.','.','A','B','E','L','.','T','U','A'],
+  ['R','C','.','S','R','T','.','S','.','.','.','H','S','T','.','T','T','.','T','.'],
+  ['O','I','N','K','O','I','N','K','.','F','D','I','C','.','U','S','H','E','R','S'],
+  ['W','A','S','.','N','C','.','.','C','R','A','N','I','A','L','.','O','X','E','N'],
+  ['W','L','W','.','F','O','U','C','A','U','L','D','I','A','N','.','R','E','C','.'],
+  ['I','.','.','G','I','N','R','U','M','M','Y','.','.','R','A','U','N','C','H','Y'],
+  ['L','A','C','E','S','.','.','R','I','P','.','S','P','O','R','K','.','U','T','.'],
+  ['S','T','I','N','T','.','C','V','S','.','B','.','R','N','.','.','R','T','.','C'],
+  ['O','.','N','E','.','T','H','E','O','L','O','G','Y','.','P','U','N','I','S','H'],
+  ['N','.','E','A','S','T','E','R','L','Y','.','R','A','D','O','N','.','O','P','E'],
+  ['.','T','M','L','.','C','R','I','E','S','O','U','T','.','L','O','O','N','I','E'],
+  ['C','I','A','O','.','.','.','G','.','.','V','.','.','G','I','.','.','E','R','S'],
+  ['A','C','T','G','A','Y','.','H','A','T','E','R','.','I','C','E','T','R','E','Y'],
+  ['S','K','I','I','N','G','.','T','I','E','R','E','D','.','E','T','F','.','.','.'],
+  ['K','.','C','C','T','V','.','.','M','A','T','S','.','E','D','I','F','I','C','E'],
+]
 
 // dimensions
 const rows = grid.length;
@@ -34,44 +42,33 @@ grid.forEach((row) => {
   });
 });
 
-// Create an overlay layer for clue numbers. The overlay is visual-only
-// (pointer-events: none) so it won't block input focus or typing.
+// overlay + numbering logic (keeps previous behavior)
 const overlay = document.createElement('div');
 overlay.className = 'overlay';
 overlay.style.position = 'absolute';
 overlay.style.inset = '0';
 overlay.style.display = 'grid';
-// Instead of hard-coded 32px templates, set CSS vars so the stylesheet can
-// compute responsive sizes. The CSS uses --cols and --cell-size to size the grid.
+// Use CSS custom properties so responsive CSS controls cell sizing
 overlay.style.setProperty('--cols', String(cols));
 overlay.style.setProperty('--rows', String(rows));
-// also set the same on the crossword container so both use the same vars
 crosswordContainer.style.setProperty('--cols', String(cols));
 crosswordContainer.style.setProperty('--rows', String(rows));
-overlay.style.pointerEvents = 'none'; // allow clicks to pass to inputs
+overlay.style.pointerEvents = 'none';
 
-// We'll number across clues first (left-to-right, top-to-bottom) and only
-// number across/down clues that have length >= 2. After numbering across
-// we continue numbering down clues for starts that haven't already been
-// assigned a number.
 const numbers = Array.from({ length: rows }, () => Array(cols).fill(null));
 let clueNum = 0;
 
-// Helper to compute across length starting at r,c
 function acrossLength(r, c) {
   let len = 0;
   for (let x = c; x < cols && grid[r][x] !== '.'; x++) len++;
   return len;
 }
-
-// Helper to compute down length starting at r,c
 function downLength(r, c) {
   let len = 0;
   for (let y = r; y < rows && grid[y][c] !== '.'; y++) len++;
   return len;
 }
 
-// 1) Number across clues (left-to-right, top-to-bottom) if length >= 2
 for (let r = 0; r < rows; r++) {
   for (let c = 0; c < cols; c++) {
     if (grid[r][c] === '.') continue;
@@ -85,8 +82,6 @@ for (let r = 0; r < rows; r++) {
     }
   }
 }
-
-// 2) Number down clues (top-to-bottom, left-to-right) if length >=2
 for (let r = 0; r < rows; r++) {
   for (let c = 0; c < cols; c++) {
     if (grid[r][c] === '.') continue;
@@ -101,7 +96,6 @@ for (let r = 0; r < rows; r++) {
   }
 }
 
-// Build overlay spans (one per cell) and fill with assigned numbers (if any)
 for (let r = 0; r < rows; r++) {
   for (let c = 0; c < cols; c++) {
     const span = document.createElement('span');
@@ -111,20 +105,14 @@ for (let r = 0; r < rows; r++) {
   }
 }
 
-// append overlay after inputs so it visually sits above them
 crosswordContainer.appendChild(overlay);
 
-// --------- Verification button logic ----------
+// Verify button logic (same as site)
 document.addEventListener('DOMContentLoaded', () => {
-  // ...existing code...
-
-  // Verification logic
   const verifyBtn = document.getElementById('verify-btn');
   if (verifyBtn) {
     verifyBtn.addEventListener('click', () => {
-      // Get all input cells
       const inputCells = Array.from(document.querySelectorAll('input.cell'));
-      // Remove previous incorrect highlights
       inputCells.forEach(cell => cell.classList.remove('incorrect'));
       let idx = 0;
       for (let r = 0; r < rows; r++) {
@@ -140,49 +128,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
 
-// --------- Password-protected reveal (client-side demo) ----------
-// Note: client-side password checks can be inspected/modified by users.
-// For true protection, perform password checking on a server and only
-// deliver the image after authentication.
-
-document.addEventListener('DOMContentLoaded', () => {
+  // reveal image logic (password stored in file — change or remove if desired)
   const passInput = document.getElementById('reveal-password');
   const passBtn = document.getElementById('reveal-button');
   const msg = document.getElementById('reveal-message');
   const img = document.getElementById('solved-image');
-
-  if (!passInput || !passBtn || !msg || !img) return; // nothing to do
-
-  // Replace this with your chosen password. This example stores plaintext
-  // which is easy to inspect — for production, verify on a server.
-  const CORRECT_PASSWORD = 'BASHAR';
-
-  function showImage() {
-    img.style.display = 'block';
-    msg.textContent = 'Solved grid revealed.';
-    msg.style.color = '#060';
+  if (passInput && passBtn && msg && img) {
+    const CORRECT_PASSWORD = 'OFFLINE';
+    passBtn.addEventListener('click', () => {
+      const val = passInput.value || '';
+      if (val === CORRECT_PASSWORD) {
+        img.style.display = 'block';
+        msg.textContent = 'Solved grid revealed.';
+        msg.style.color = '#060';
+        passInput.value = '';
+      } else {
+        img.style.display = 'none';
+        msg.textContent = 'Incorrect password.';
+        msg.style.color = '#900';
+      }
+    });
+    passInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') passBtn.click(); });
   }
-
-  function hideImageWithError() {
-    img.style.display = 'none';
-    msg.textContent = 'Incorrect password.';
-    msg.style.color = '#900';
-  }
-
-  passBtn.addEventListener('click', () => {
-    const val = passInput.value || '';
-    if (val === CORRECT_PASSWORD) {
-      showImage();
-      passInput.value = '';
-    } else {
-      hideImageWithError();
-    }
-  });
-
-  // allow Enter key to submit
-  passInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') passBtn.click();
-  });
 });
